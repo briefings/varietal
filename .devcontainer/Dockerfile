@@ -5,7 +5,7 @@ FROM python:3.11-slim-bookworm
 RUN pip install --upgrade pip
 
 # requirements
-RUN pip install --requirement ../requirements.txt
+RUN pip install --requirement requirements.txt
 
 # Port
 EXPOSE 8000
