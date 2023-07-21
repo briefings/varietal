@@ -1,2 +1,16 @@
-# varietal
-Varietal
+
+<br>
+
+**Varietal**
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
