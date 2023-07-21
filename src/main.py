@@ -15,6 +15,10 @@ def main():
 
     logger.info('Varietal')
 
+    offers = data.offers()
+    offers.info()
+    logger.info(offers.head())
+
 
 if __name__ == '__main__':
 
@@ -28,5 +32,11 @@ if __name__ == '__main__':
                         format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
                         datefmt='%Y-%m-%d %H:%M:%S')
     logger = logging.getLogger(__name__)
+
+    # Classes
+    import src.data
+
+    # Instances
+    data = src.data.Data()
 
     main()
