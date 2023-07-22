@@ -28,5 +28,8 @@ class Metrics:
         distortions = {models[i].n_clusters: models[i].inertia_
                        for i in range(len(models))}
         self.__logger.info(distortions)
-        frame = pd.DataFrame.from_dict(distortions, orient='index')
+        frame = pd.DataFrame.from_dict(distortions, orient='index', columns=['distortion'])
+        self.__logger.info(frame)
+        frame.reset_index(drop=False, inplace=True)
+        frame.rename(columns={'index': 'n_clusters'}, inplace=True)
         self.__logger.info(frame)
