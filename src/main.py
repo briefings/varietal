@@ -15,11 +15,11 @@ def main():
 
     logger.info('Varietal')
 
-    offers = data.offers()
+    offers = read.offers()
     offers.info()
     logger.info(offers.head())
 
-    transactions = data.transactions()
+    transactions = read.transactions()
     transactions.info()
     logger.info(transactions.head())
 
@@ -41,9 +41,9 @@ if __name__ == '__main__':
     logger = logging.getLogger(__name__)
 
     # Classes
-    import src.data
+    import src.read
 
     # Instances
-    data = src.data.Data()
+    read = src.read.Read()
 
     main()
