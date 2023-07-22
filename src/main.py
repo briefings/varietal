@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 
@@ -31,8 +32,12 @@ def main():
     structures.people().info()
     structures.log().info()
     design: pd.DataFrame = structures.design()
-    logger.info(design.head())
-    logger.info(design.to_numpy())
+    logger.info(design.info())
+
+    models = src.modelling.kmeans.interface.Interface(
+        design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
+    logger.info(type(models))
+    logger.info(type(models[0]))
 
 
 if __name__ == '__main__':
@@ -51,9 +56,9 @@ if __name__ == '__main__':
     # Classes
     import src.data.read
     import src.data.structures
+    import src.modelling.kmeans.interface
 
     # Instances
     read = src.data.read.Read()
-
 
     main()
