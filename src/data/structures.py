@@ -45,5 +45,6 @@ class Structures:
         log = self.log()
         data = pd.pivot_table(log[['surname', 'offer_id', 'n_purchases']],
                               values='n_purchases', index='surname', columns='offer_id')
+        data.fillna(value=0, inplace=True)
 
         return data
