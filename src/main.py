@@ -17,13 +17,12 @@ def main():
 
     offers = read.offers()
     offers.info()
-    logger.info(offers.head())
 
     transactions = read.transactions()
     transactions.info()
-    logger.info(transactions.head())
 
     people = transactions['surname'].value_counts().reset_index(name='n_transactions')
+    people.rename(columns={'index': 'surname'}, inplace=True)
     logger.info(people)
 
 
