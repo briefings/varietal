@@ -41,9 +41,9 @@ if __name__ == '__main__':
     logger = logging.getLogger(__name__)
 
     # Classes
-    import src.read
+    import src.data.read
 
     # Instances
-    read = src.read.Read()
+    read = src.data.read.Read()
 
     main()
