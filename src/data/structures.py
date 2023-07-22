@@ -20,6 +20,7 @@ class Structures:
         :return:
         """
 
+        # The clients and the number of transactions per client
         data = self.__transactions['surname'].value_counts().reset_index(name='n_transactions')
         data.rename(columns={'index': 'surname'}, inplace=True)
 
@@ -27,11 +28,12 @@ class Structures:
 
     def log(self) -> pd.DataFrame:
         """
-        Per offer type, denoted by offer_id, create a record per purchase
+        Per offer type, denoted by <offer_id>, create a record per offer purchase by a surname
 
         :return:
         """
 
+        # The offers & transactions log, i.e., <offers> left join <transactions>
         data = self.__offers.merge(self.__transactions, how='left', on='offer_id')
 
         return data
