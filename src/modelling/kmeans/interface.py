@@ -1,6 +1,6 @@
+import dask
 import numpy as np
 import sklearn.cluster as sc
-import dask
 
 
 class Interface:
@@ -25,7 +25,7 @@ class Interface:
         return sc.KMeans(n_clusters=n_clusters, init='k-means++', n_init=100,
                          random_state=self.__random_state, copy_x=True).fit(self.__design)
 
-    def exc(self, n_clusters_series: np.ndarray):
+    def exc(self, n_clusters_series: np.ndarray) -> [sc.KMeans]:
         """
 
         :param n_clusters_series:
@@ -37,6 +37,7 @@ class Interface:
             model = self.__model(n_clusters=n_clusters)
             computations.append(model)
 
+        dask.visualize(computations, filename='dag', format='pdf')
         models = dask.compute(computations, scheduler='threads')[0]
 
         return models
