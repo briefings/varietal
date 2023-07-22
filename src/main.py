@@ -24,16 +24,12 @@ def main():
     transactions = read.transactions()
     transactions.info()
 
-    # Structures
-    #  - The clients and the number of transactions per client
-    #  - The offers & transactions log, i.e., <offers> left join <transactions>
-    #  - Design matrix frame
     structures = src.data.structures.Structures(offers=offers, transactions=transactions)
     design: pd.DataFrame = structures.design()
 
     models = src.modelling.kmeans.interface.Interface(
         design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
-    logger.info(type(models[0]))
+
     src.modelling.kmeans.metrics.Metrics().exc(models=models)
 
 
