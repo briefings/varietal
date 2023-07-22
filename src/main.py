@@ -29,14 +29,10 @@ def main():
     #  - The offers & transactions log, i.e., <offers> left join <transactions>
     #  - Design matrix frame
     structures = src.data.structures.Structures(offers=offers, transactions=transactions)
-    structures.people().info()
-    structures.log().info()
     design: pd.DataFrame = structures.design()
-    logger.info(design.info())
 
     models = src.modelling.kmeans.interface.Interface(
         design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
-    logger.info(type(models))
     logger.info(type(models[0]))
     src.modelling.kmeans.metrics.Metrics().exc(models=models)
 
@@ -49,7 +45,7 @@ if __name__ == '__main__':
     sys.path.append(os.path.join(root, 'src'))
 
     # Re-visit: https://scikit-learn.org/stable/computing/parallelism.html
-    os.environ['OMP_NUM_THREADS'] = '1'
+    # os.environ['OMP_NUM_THREADS'] = '1'
 
     # Logging
     logging.basicConfig(level=logging.INFO,
