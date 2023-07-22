@@ -1,5 +1,6 @@
 import pandas as pd
 import dask_ml.cluster as dc
+import numpy as np
 import logging
 
 
@@ -31,4 +32,11 @@ class Metrics:
         frame = pd.DataFrame.from_dict(distortions, orient='index', columns=['distortion'])
         frame.reset_index(drop=False, inplace=True)
         frame.rename(columns={'index': 'n_clusters'}, inplace=True)
+        self.__logger.info(frame)
+
+        differences = np.diff(frame['distortion'].to_numpy())
+        differences = np.insert(differences.copy(), obj=0, values=np.nan, axis=0)
+        self.__logger.info(differences)
+
+        frame.loc[:, 'difference'] = differences
         self.__logger.info(frame)
