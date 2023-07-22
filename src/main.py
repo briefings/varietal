@@ -38,6 +38,7 @@ def main():
         design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
     logger.info(type(models))
     logger.info(type(models[0]))
+    src.modelling.kmeans.metrics.Metrics().exc(models=models)
 
 
 if __name__ == '__main__':
@@ -46,6 +47,9 @@ if __name__ == '__main__':
     root = os.getcwd()
     sys.path.append(root)
     sys.path.append(os.path.join(root, 'src'))
+
+    # Re-visit: https://scikit-learn.org/stable/computing/parallelism.html
+    os.environ['OMP_NUM_THREADS'] = '1'
 
     # Logging
     logging.basicConfig(level=logging.INFO,
@@ -57,6 +61,7 @@ if __name__ == '__main__':
     import src.data.read
     import src.data.structures
     import src.modelling.kmeans.interface
+    import src.modelling.kmeans.metrics
 
     # Instances
     read = src.data.read.Read()
