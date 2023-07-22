@@ -22,6 +22,9 @@ class Data:
         data = self.__streams.api(uri=uri, header=0)
         data.rename(columns=fields, inplace=True)
 
+        for field in ['campaign', 'varietal', 'origin']:
+            data.loc[:, field] = data[field].str.title()
+
         return data
 
     def transactions(self) -> pd.DataFrame:
