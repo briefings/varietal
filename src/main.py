@@ -19,6 +19,10 @@ def main():
     offers.info()
     logger.info(offers.head())
 
+    transactions = data.transactions()
+    transactions.info()
+    logger.info(transactions.head())
+
 
 if __name__ == '__main__':
 
