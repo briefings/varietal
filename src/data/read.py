@@ -34,5 +34,6 @@ class Read:
         data = self.__streams.api(uri=uri, header=0)
         data.rename(columns=fields, inplace=True)
         data.loc[:, 'surname'] = data['surname'].str.title()
+        data.loc[:, 'n_purchases'] = 1
 
         return data
