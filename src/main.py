@@ -5,6 +5,8 @@ import logging
 import os
 import sys
 
+import pandas as pd
+
 
 def main():
     """
@@ -21,17 +23,16 @@ def main():
     transactions = read.transactions()
     transactions.info()
 
+    # Structures
+    #  - The clients and the number of transactions per client
+    #  - The offers & transactions log, i.e., <offers> left join <transactions>
+    #  - Design matrix frame
     structures = src.data.structures.Structures(offers=offers, transactions=transactions)
-
-    # The clients and the number of transactions per client
     structures.people().info()
-
-    # offers & transactions
     structures.log().info()
-
-    # Design matrix
-    design = structures.design()
+    design: pd.DataFrame = structures.design()
     logger.info(design.head())
+    logger.info(design.to_numpy())
 
 
 if __name__ == '__main__':
