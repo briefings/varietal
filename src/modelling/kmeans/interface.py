@@ -1,8 +1,6 @@
 import dask
-import dask_ml.cluster
-import llvmlite
+import dask_ml.cluster as dc
 import numpy as np
-import sklearn.cluster as sc
 
 
 class Interface:
@@ -26,10 +24,10 @@ class Interface:
         :return:
         """
 
-        return dask_ml.cluster.KMeans(n_clusters=n_clusters, init='k-means++',
-                                      random_state=self.__random_state, copy_x=True).fit(self.__design)
+        return dc.KMeans(n_clusters=n_clusters, init='k-means++',
+                         random_state=self.__random_state, copy_x=True).fit(self.__design)
 
-    def exc(self, n_clusters_series: np.ndarray):
+    def exc(self, n_clusters_series: np.ndarray) -> [dc.KMeans]:
         """
 
         :param n_clusters_series:
