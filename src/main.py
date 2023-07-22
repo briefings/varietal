@@ -30,7 +30,7 @@ def main():
     models = src.modelling.kmeans.interface.Interface(
         design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
 
-    src.modelling.kmeans.metrics.Metrics().exc(models=models)
+    metrics = src.modelling.kmeans.metrics.Metrics().exc(models=models)
 
 
 if __name__ == '__main__':
