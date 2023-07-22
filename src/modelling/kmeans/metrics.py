@@ -1,4 +1,5 @@
-import sklearn.cluster as sc
+import pandas as pd
+import dask_ml.cluster as dc
 import logging
 
 
@@ -14,11 +15,11 @@ class Metrics:
                             datefmt='%Y-%m-%d %H:%M:%S')
         self.__logger = logging.getLogger(__name__)
 
-    def exc(self, models: [sc.KMeans]):
+    def exc(self, models: [dc.KMeans]):
         """
-        model: sc.KMeans
+        model: dc.KMeans
         for model in models:
-            self.__logger.info(model.n_clusters)
+            self.__logger.info(model.inertia_)
 
         :param models:
         :return:
@@ -27,3 +28,5 @@ class Metrics:
         distortions = {models[i].n_clusters: models[i].inertia_
                        for i in range(len(models))}
         self.__logger.info(distortions)
+        frame = pd.DataFrame.from_dict(distortions, orient='index')
+        self.__logger.info(frame)
