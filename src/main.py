@@ -21,9 +21,17 @@ def main():
     transactions = read.transactions()
     transactions.info()
 
-    people = transactions['surname'].value_counts().reset_index(name='n_transactions')
-    people.rename(columns={'index': 'surname'}, inplace=True)
-    logger.info(people)
+    structures = src.data.structures.Structures(offers=offers, transactions=transactions)
+
+    # The clients and the number of transactions per client
+    structures.people().info()
+
+    # offers & transactions
+    structures.log().info()
+
+    # Design matrix
+    design = structures.design()
+    logger.info(design.head())
 
 
 if __name__ == '__main__':
@@ -41,8 +49,10 @@ if __name__ == '__main__':
 
     # Classes
     import src.data.read
+    import src.data.structures
 
     # Instances
     read = src.data.read.Read()
+
 
     main()
