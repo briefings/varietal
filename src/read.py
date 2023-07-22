@@ -3,7 +3,7 @@ import pandas as pd
 import src.functions.streams
 
 
-class Data:
+class Read:
 
     def __init__(self):
         """
