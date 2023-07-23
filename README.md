@@ -23,6 +23,16 @@ re-install ``numba`` & ``llvmlite`` via the ``numba`` channel
 This rep's virtual environment is [miscellaneous](https://github.com/briefings/energy#development-notes).
 
 <br>
+
+For ``matplotlib`` graphs [PyQt5](https://pypi.org/project/PyQt5/) is required
+
+````shell
+  python -m pip install PyQt5 
+````
+
+[About twins](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/two_scales.html).
+
+<br>
 <br>
 
 <br>
