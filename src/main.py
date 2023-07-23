@@ -5,6 +5,8 @@ import logging
 import os
 import sys
 
+import matplotlib.pyplot as plt
+
 import numpy as np
 import pandas as pd
 
@@ -31,6 +33,24 @@ def main():
         design=design.to_numpy()).exc(n_clusters_series=np.arange(2, 12))
 
     metrics = src.modelling.kmeans.metrics.Metrics().exc(models=models)
+
+    left: plt.axes
+    fig, left = plt.subplots()
+
+    colour = 'tab:orange'
+    left.set_xlabel('# of clusters')
+    left.set_ylabel('distortion', color=colour)
+    left.plot(metrics['n_clusters'], metrics['distortion'], color=colour)
+    left.tick_params(axis='y', labelcolor=colour)
+
+    colour = 'black'
+    right = left.twinx()
+    right.set_ylabel('distortion', color=colour)
+    right.plot(metrics['n_clusters'], metrics['difference'], color=colour)
+    right.tick_params(axis='y', labelcolor=colour)
+
+    fig.tight_layout()
+    plt.show()
 
 
 if __name__ == '__main__':
